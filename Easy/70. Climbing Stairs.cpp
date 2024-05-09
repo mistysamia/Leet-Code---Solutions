@@ -1,27 +1,42 @@
-class Solution {
-public:
-    int dp[50];
-    int climb(int n, int count)
+#include <bits/stdc++.h>
+using namespace std;
+
+int dp[100];
+int steps(int n, int i)
+{
+    if (i > n)
+        return 0;
+
+    if (i == n)
+        return 1;
+
+    if (dp[i] != -1)
+        return dp[i];
+
+    dp[i] = steps(n, i + 1) + steps(n, i + 2);
+    return dp[i];
+}
+
+int climbStairs(int n)
+{
+    memset(dp, -1, sizeof dp);
+    return steps(n, 0);
+}
+
+int main()
+{
+
+    int t = 100;
+
+    while (t--)
     {
-        if (n < count)
-        {
-            return 0;
-        }
-        if (n == count)
-        {
-            return 1;
-        }
+        int n, target, k, m;
+        vector<int> nums, tums, ans;
+        vector<string> str;
+        vector<vector<int>> matrix, mat;
+        string s, s1;
+        cin >> n;
 
-        if (dp[count] != 0)
-            return dp[count];
-
-        dp[count] = climb(n, count + 1) + climb(n, count + 2);
-        return dp[count];
+        cout << climbStairs(n) << endl;
     }
-
-    int climbStairs(int n)
-    {
-        memset(dp, 0, sizeof(dp));
-        return climb(n, 0);
-    }
-};
+}
