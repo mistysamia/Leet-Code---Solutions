@@ -40,5 +40,3 @@ int main()
         cout << climbStairs(n) << endl;
     }
 }
-
-//Comment from Feature-1
